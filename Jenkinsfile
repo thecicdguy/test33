@@ -26,7 +26,18 @@ pipeline {
                 // Run Maven on a Unix agent.
                 sh "mvn clean test"
             }
-        }  
+        }
+        
+        stage('Package') {
+            steps {
+                // Get some code from a GitHub repository
+                //git 'https://github.com/thecicdguy/test33.git'
+                checkout scm
+
+                // Run Maven on a Unix agent.
+                sh "./mvnw spring-boot:build-image"
+            }
+        }
           //  post {
           //      // If Maven was able to run the tests, even if some of the test
           //      // failed, record the test results and archive the jar file.
