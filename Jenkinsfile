@@ -38,6 +38,17 @@ pipeline {
 
                 // Run Maven on a Unix agent.
                 sh "mvn -U clean package" 
+                sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ."           
+            }
+        }
+        stage('dockbuild') {
+            steps {
+                // Get some code from a GitHub repository
+                //git 'https://github.com/thecicdguy/test33.git'
+                checkout scm
+
+                // Run Maven on a Unix agent.
+                sh "mvn -U clean package" 
                 //sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ."
                 script {
                     echo 'Publishing Artifacts to Artifactory'                               
