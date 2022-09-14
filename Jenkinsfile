@@ -1,3 +1,5 @@
+def artUploadServer = Artifactory.server('jfrogartifactory')
+
 pipeline {
     agent any
 
@@ -35,7 +37,21 @@ pipeline {
                 checkout scm
 
                 // Run Maven on a Unix agent.
-                sh "./mvnw spring-boot:build-image"
+                sh "mvn -U clean package" 
+                //sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ."
+                script {
+                    echo 'Publishing Artifacts to Artifactory'                               
+                    def uploadSpec = """{
+                        "files": [
+                            {
+                                "pattern": "target/*.jar",
+                                "target": "docker-repo-docker-local"
+                            }
+                        ]
+                    }"""
+                    def buildInfo = artUploadServer.upload(uploadSpec)
+                    artUploadServer.publishBuildInfo(buildInfo)
+                }            
             }
         }
           //  post {
