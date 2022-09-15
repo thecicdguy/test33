@@ -8,7 +8,7 @@ pipeline {
     //    maven "M3"
     //}
     environment{
-        jfrogcred = credentials('jenkins-uploader')
+        jfrogcred = credentials('jfroguploader')
     }
     
     stages {
