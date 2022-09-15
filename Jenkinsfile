@@ -37,7 +37,8 @@ pipeline {
 
                 // Run Maven on a Unix agent.
                 sh "mvn -U clean package" 
-                sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ."           
+                sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ." 
+                sh "docker images"
             }
         }
        /* stage('uploadart') {
