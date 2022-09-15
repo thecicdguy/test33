@@ -7,7 +7,10 @@ pipeline {
         // Install the Maven version configured as "M3" and add it to the path.
     //    maven "M3"
     //}
-
+    environment{
+        jfrogcred = credentials('jenkins-uploader')
+    }
+    
     stages {
       /*  stage('Compile') {
             steps {
@@ -48,7 +51,7 @@ pipeline {
               //  sh "docker build --build-arg JAR_FILE=target/*.jar ."  
                 sh "docker images"
                // sh "docker tag 8b27b2bc64d4 shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest"
-                sh "echo $jenkins-uploader_PSW | docker login shyamchitgopkar.jfrog.io -u $jenkins-uploader_USR --password-stdin"
+                sh "echo $jfrogcred_PSW | docker login shyamchitgopkar.jfrog.io -u $jfrogcred_USR --password-stdin"
                 sh "docker push shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest"
             }
         }
