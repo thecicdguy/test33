@@ -14,8 +14,6 @@ pipeline {
                 // Get some code from a GitHub repository
                 //git 'https://github.com/thecicdguy/test33.git'
                 checkout scm
-                sh "who am i"
-
                 // Run Maven on a Unix agent.
                 sh "mvn clean compile"
             }
