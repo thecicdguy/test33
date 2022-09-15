@@ -39,6 +39,7 @@ pipeline {
                 sh "mvn -U clean package" 
                 sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ." 
                 sh "docker images"
+                sh "docker push $artUploadServer/docker-repo-docker-local/myorg/myapp:latest"
             }
         }
        /* stage('uploadart') {
