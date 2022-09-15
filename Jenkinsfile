@@ -122,4 +122,16 @@ pipeline {
             }
         }*/
     }
+    post {
+        always {
+            deleteDir()
+            sh "docker rmi myapp"
+        }
+        success {
+            echo "Job completed successfully"
+        }
+        failure {
+            echo "Job failed"
+        }
+    }
 }
