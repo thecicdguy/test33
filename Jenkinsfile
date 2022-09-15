@@ -15,7 +15,7 @@ pipeline {
                 //git 'https://github.com/thecicdguy/test33.git'
                 checkout scm
                 // Run Maven on a Unix agent.
-                sh "mvn clean compile"
+                sh "mvn -q clean compile"
             }
         }
         stage('RunTests') {
@@ -25,7 +25,7 @@ pipeline {
                 checkout scm
 
                 // Run Maven on a Unix agent.
-                sh "mvn clean test"
+                sh "mvn -q clean test"
             }
         }
         
@@ -36,7 +36,7 @@ pipeline {
                 checkout scm
 
                 // Run Maven on a Unix agent.
-                sh "mvn -U clean package" 
+                sh "mvn -q -U clean package" 
                 sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ." 
                 sh "docker images"
                 sh "docker push $artUploadServer/docker-repo-docker-local/myorg/myapp:latest"
