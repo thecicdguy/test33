@@ -14,6 +14,7 @@ pipeline {
                 // Get some code from a GitHub repository
                 //git 'https://github.com/thecicdguy/test33.git'
                 checkout scm
+                sh "who am i"
 
                 // Run Maven on a Unix agent.
                 sh "mvn clean compile"
@@ -41,7 +42,7 @@ pipeline {
                 sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ."           
             }
         }
-        stage('uploadart') {
+       /* stage('uploadart') {
             steps {
                 // Get some code from a GitHub repository
                 //git 'https://github.com/thecicdguy/test33.git'
@@ -64,7 +65,7 @@ pipeline {
                     artUploadServer.publishBuildInfo(buildInfo)
                 }            
             }
-        }
+        }*/
           //  post {
           //      // If Maven was able to run the tests, even if some of the test
           //      // failed, record the test results and archive the jar file.
