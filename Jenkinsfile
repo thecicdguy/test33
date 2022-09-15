@@ -28,15 +28,15 @@ pipeline {
                 sh "mvn -q clean test"
             }
         }
-     /*   stage ('Artifactory configuration') {
+        stage ('Artifactory configuration') {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
                     url: "https://shyamchitgopkar.jfrog.io",
-                    credentialsId: jenkins-uploader
+                    credentialsId: "jenkins-uploader"
                 )
             }
-        }*/
+        }
         stage('dockbuild') {
             steps {
                 // Get some code from a GitHub repository
