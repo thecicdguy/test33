@@ -45,7 +45,7 @@ pipeline {
 
                 // Run Maven on a Unix agent.
                 sh "mvn -q -U clean package" 
-                sh "docker build --build-arg JAR_FILE=target/*.jar -t myorg/myapp ." 
+                sh "docker build --build-arg JAR_FILE=target/*.jar -t https://shyamchitgopkar.jfrog.io/docker-repo-docker-local/myorg/myapp:latest ." 
                 sh "docker images"
                // sh "docker push $artUploadServer/docker-repo-docker-local/myorg/myapp:latest"
             }
