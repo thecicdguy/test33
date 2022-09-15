@@ -55,7 +55,7 @@ pipeline {
             steps {
                 rtDockerPush(
                     serverId: "ARTIFACTORY_SERVER",
-                    image: "https://shyamchitgopkar.jfrog.io/docker-repo-docker-local/myorg/myapp:latest",
+                    image: "https://shyamchitgopkar.jfrog.io/artifactory/docker-repo-docker-local/myorg/myapp:latest",
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
@@ -98,6 +98,6 @@ pipeline {
           //          archiveArtifacts 'target/*.jar'
           //      }
           //  }
-      //  }
+      //  }  https://shyamchitgopkar.jfrog.io/artifactory/docker-repo-docker-local/
     }
 }
