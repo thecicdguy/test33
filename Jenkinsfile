@@ -45,8 +45,9 @@ pipeline {
 
                 // Run Maven on a Unix agent.
                 sh "mvn -q -U clean package" 
-                sh "docker build --build-arg JAR_FILE=target/*.jar -t shyamchitgopkar.jfrog.io/docker-repo-docker-local/myorg/myapp:latest ." 
+                sh "docker build --build-arg JAR_FILE=target/*.jar."  
                 sh "docker images"
+                sh "docker tag 8b27b2bc64d4 shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest"
                // sh "docker push $artUploadServer/docker-repo-docker-local/myorg/myapp:latest"
             }
         }
@@ -56,7 +57,7 @@ pipeline {
                 sh "docker images"
                 rtDockerPush(
                     serverId: "ARTIFACTORY_SERVER",
-                    image: "https://shyamchitgopkar.jfrog.io/docker-repo-docker-local/myorg/myapp:latest",
+                    image: "shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest",
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
@@ -99,6 +100,6 @@ pipeline {
           //          archiveArtifacts 'target/*.jar'
           //      }
           //  }
-      //  }  https://shyamchitgopkar.jfrog.io/artifactory/docker-repo-docker-local/
+      //  }  https://shyamchitgopkar.jfrog.io/artifactory/docker-repo-docker-local/docker push shyamchitgopkar.jfrog.io/docker-repo-docker-local/<DOCKER_IMAGE>:<DOCKER_TAG>
     }
 }
