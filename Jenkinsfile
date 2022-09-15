@@ -28,7 +28,15 @@ pipeline {
                 sh "mvn -q clean test"
             }
         }
-        
+        stage ('Artifactory configuration') {
+            steps {
+                rtServer (
+                    id: "ARTIFACTORY_SERVER",
+                    url: "https://shyamchitgopkar.jfrog.io",
+                    credentialsId: jenkins-uploader
+                )
+            }
+        }
         stage('dockbuild') {
             steps {
                 // Get some code from a GitHub repository
@@ -46,7 +54,7 @@ pipeline {
         stage ('Push image to Artifactory') {
             steps {
                 rtDockerPush(
-                    serverId: "jfrogartifactory",
+                    serverId: "ARTIFACTORY_SERVER",
                     image: docker-repo-docker-local + 'myorg/myapp:latest',
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
