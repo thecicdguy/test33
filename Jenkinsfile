@@ -44,10 +44,10 @@ pipeline {
                 checkout scm
 
                 // Run Maven on a Unix agent.
-                sh "mvn --quiet -U clean package" 
-                sh "docker build --build-arg JAR_FILE=target/*.jar ."  
+               // sh "mvn --quiet -U clean package" 
+              //  sh "docker build --build-arg JAR_FILE=target/*.jar ."  
                 sh "docker images"
-                sh "docker tag 8b27b2bc64d4 shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest"
+               // sh "docker tag 8b27b2bc64d4 shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest"
                 sh "echo $jenkins-uploader_PSW | docker login shyamchitgopkar.jfrog.io -u $jenkins-uploader_USR --password-stdin"
                 sh "docker push shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest"
             }
