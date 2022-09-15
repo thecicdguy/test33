@@ -55,11 +55,11 @@ pipeline {
             steps {
                 rtDockerPush(
                     serverId: "ARTIFACTORY_SERVER",
-                    image: "docker-repo-docker-local" + "myorg/myapp:latest",
+                    image: "myorg/myapp:latest",
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
-                    targetRepo: 'myorg/myapp',
+                    targetRepo: "docker-repo-docker-local",
                     // Attach custom properties to the published artifacts:
                 )
             }
