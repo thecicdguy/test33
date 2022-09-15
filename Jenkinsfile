@@ -37,7 +37,7 @@ pipeline {
                 )
             }
         }
-       /* stage('dockbuild') {
+        stage('dockbuild') {
             steps {
                 // Get some code from a GitHub repository
                 //git 'https://github.com/thecicdguy/test33.git'
@@ -49,7 +49,7 @@ pipeline {
                 sh "docker images"
                // sh "docker push $artUploadServer/docker-repo-docker-local/myorg/myapp:latest"
             }
-        }*/
+        }
 
         stage ('Push image to Artifactory') {
             steps {
