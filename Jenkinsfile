@@ -28,7 +28,7 @@ pipeline {
                 sh "mvn -q clean test"
             }
         }
-        stage ('Artifactory configuration') {
+     /*   stage ('Artifactory configuration') {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
@@ -36,7 +36,7 @@ pipeline {
                     credentialsId: jenkins-uploader
                 )
             }
-        }
+        }*/
         stage('dockbuild') {
             steps {
                 // Get some code from a GitHub repository
@@ -59,10 +59,8 @@ pipeline {
                     // Host:
                     // On OSX: "tcp://127.0.0.1:1234"
                     // On Linux can be omitted or null
-                    host: HOST_NAME,
                     targetRepo: 'myorg/myapp',
                     // Attach custom properties to the published artifacts:
-                    properties: 'project-name=docker1;status=stable'
                 )
             }
         }
