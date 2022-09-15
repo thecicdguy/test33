@@ -44,8 +44,8 @@ pipeline {
                 checkout scm
 
                 // Run Maven on a Unix agent.
-                sh "mvn -q -U clean package" 
-                sh "docker build --build-arg JAR_FILE=target/*.jar."  
+                sh "mvn --quiet -U clean package" 
+                sh "docker build --build-arg JAR_FILE=target/*.jar ."  
                 sh "docker images"
                 sh "docker tag 8b27b2bc64d4 shyamchitgopkar.jfrog.io/docker-repo-docker-local/myapp:latest"
                // sh "docker push $artUploadServer/docker-repo-docker-local/myorg/myapp:latest"
